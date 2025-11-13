@@ -7,31 +7,35 @@
 using namespace std;
 int main()
 {
-	string LineUp = "C:\\Users\\olive\\Downloads\\LineUp.txt";
+	string LineUp = "C:\\Users\\olive\\Downloads\\LineUp.txt"; //File path for LineUp.txt
 	ifstream inputFile(LineUp);
-
+	if (!inputFile)
+	{
+		cout << "Error opening file." << endl;
+		return 1;
+	}
 	string first;
 	string last;
 	string name;
 	int classCount = 0;
 	if (inputFile >> name)
-	{
+	{ //Reads first name from file
 		first = name;
 		last = name;
 		classCount = 1;
 	}
-	while (inputFile >> name);
+		while (inputFile >> name);
 	{
-		cout << name << endl;
-		classCount ++;
-		if (name < first)
-		{
-			first = name;
-		}
-		if (name > last)
-		{
-			last = name;
-		}
+			classCount ++;
+		//Increments class size for each name read
+			if (name < first)
+			{
+				first = name;
+			}
+			if (name > last)
+			{
+				last = name;
+			}//Updates first and last names accordingly
 	}
 	inputFile.close();
 	cout << "Students in class: " << classCount << endl;
