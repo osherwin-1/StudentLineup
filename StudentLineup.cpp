@@ -3,12 +3,10 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
 using namespace std;
-int main()
-{
-	string LineUp = "C:\\Users\\olive\\Downloads\\LineUp.txt"; //File path for LineUp.txt
-	ifstream inputFile(LineUp);
+int main() // This program reads the names of students from a file and determines alphabetically who will lead and tail the line.
+{// This program also counts the number of students in the class.
+	ifstream inputFile("LineUp.txt");
 	if (!inputFile)
 	{
 		cout << "Error opening file." << endl;
@@ -24,8 +22,8 @@ int main()
 		last = name;
 		classCount = 1;
 	}
-		while (inputFile >> name);
-	{
+		while (inputFile >> name)
+	{//Reads remaining names
 			classCount ++;
 		//Increments class size for each name read
 			if (name < first)
@@ -37,7 +35,7 @@ int main()
 				last = name;
 			}//Updates first and last names accordingly
 	}
-	inputFile.close();
+	inputFile.close(); //Closes file and displays results
 	cout << "Students in class: " << classCount << endl;
 	cout << "Student at front of line: " << first << endl;
 	cout << "Student at back of line: " << last << endl;
